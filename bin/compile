@@ -44,7 +44,8 @@ cd "$BUILD_DIR"
 if [[ -f "$ENV_DIR/BUILDPACK_RUN" ]]; then
   COMMANDS=$(cat "$ENV_DIR/BUILDPACK_RUN")
 elif [[ -f ./buildpack-run.sh ]]; then
-  COMMANDS=./buildpack-run.sh
+  # Need to first edit permissions for the script before running
+  COMMANDS=chmod +x ./buildpack-run.sh && ./buildpack-run.sh
 else
   echo "Error: can't apply buildpack." | A
   echo "You must specify one ore more colon-delimited commands in" | I
